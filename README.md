@@ -15,7 +15,7 @@ The original raw tables were not ready for analysis, so several preprocessing st
     - Columns were renamed or shortened to make the datasets easier to work with.
 
 <b><h2>Datasets</h2></b>
-The project includes four main tables, each described in a separate description file. These tables are now ready for analysis in various contexts.
+The project includes four main tables, each described in a separate description file. These tables are <b>Countries</b>, <b>Ecology</b>, <b>Electricity</b>, and <b>Energy</b>. These tables are now ready for analysis in various contexts.
 
 <b><h2>Next Steps</h2></b>
 1. Define Analysis Goals:
