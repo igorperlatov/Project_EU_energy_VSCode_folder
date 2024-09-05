@@ -1,12 +1,14 @@
--- Create company_dim table with primary key
-CREATE TABLE public.company_dim
+-- Create countries table with primary key
+CREATE TABLE countries
 (
-    company_id INT PRIMARY KEY,
-    name TEXT,
-    link TEXT,
-    link_google TEXT,
-    thumbnail TEXT
+    id TEXT PRIMARY KEY,
+    country TEXT,
+    year TEXT,
+    surface INT,
+    population INT,
+    GDP INT
 );
+
 
 
 CREATE TABLE public.tempo1
