@@ -1,71 +1,74 @@
--- Create countries table with primary key
-CREATE TABLE countries
+-- Creating table countries 
+CREATE TABLE IF NOT EXISTS countries
 (
     id TEXT PRIMARY KEY,
     country TEXT,
-    year TEXT,
+    year INT,
     surface INT,
     population INT,
     GDP INT
 );
 
-
-
-CREATE TABLE public.tempo1
+-- Creating table ecology
+CREATE TABLE IF NOT EXISTS ecology
 (
-    company_id INT PRIMARY KEY,
-    name TEXT,
-    link TEXT,
-    link_google TEXT,
-    thumbnail TEXT
-);
--- Create skills_dim table with primary key
-CREATE TABLE public.skills_dim
-(
-    skill_id INT PRIMARY KEY,
-    skills TEXT,
-    type TEXT
-);
-
--- Create job_postings_fact table with primary key
-CREATE TABLE public.data_camp
-(
-    job_id INT PRIMARY KEY,
-    company_id INT,
-    job_title_short VARCHAR(255),
-    job_title TEXT,
-    job_location TEXT,
-    job_via TEXT,
-    job_schedule_type TEXT,
-    job_work_from_home BOOLEAN,
-    search_location TEXT,
-    job_posted_date TIMESTAMP,
-    job_no_degree_mention BOOLEAN,
-    job_health_insurance BOOLEAN,
-    job_country TEXT,
-    salary_rate TEXT,
-    salary_year_avg NUMERIC,
-    salary_hour_avg NUMERIC,
-    FOREIGN KEY (company_id) REFERENCES public.company_dim (company_id)
+    id TEXT,
+    year INT,
+    reshare TEXT,
+    resind TEXT,
+    restemp TEXT,
+    restrans TEXT,
+    greenhouse TEXT,
+    emission TEXT,
+    emisprod TEXT,
+    emiscap TEXT,
+    PRIMARY KEY (id, year),
+    FOREIGN KEY (id) REFERENCES countries(id)
 );
 
--- Create skills_job_dim table with a composite primary key and foreign keys
-CREATE TABLE public.skills_job_dim
+-- Creating table electricity
+CREATE TABLE IF NOT EXISTS electricity
 (
-    job_id INT,
-    skill_id INT,
-    PRIMARY KEY (job_id, skill_id),
-    FOREIGN KEY (job_id) REFERENCES public.job_postings_fact (job_id),
-    FOREIGN KEY (skill_id) REFERENCES public.skills_dim (skill_id)
+    id TEXT,
+    year INT,
+    elprod INT,
+    elres INT,
+    eldom INT,
+    elfin INT,
+    resel TEXT,
+    gdpint TEXT,
+    elconhouse TEXT,
+    eldepend TEXT,
+    PRIMARY KEY (id, year),
+    FOREIGN KEY (id) REFERENCES countries(id)
+);
+
+-- Creating table energy
+CREATE TABLE IF NOT EXISTS energy
+(
+    id TEXT,
+    year INT,
+    enprim INT,
+    endom INT,
+    enint INT,
+    import INT,
+    fincons INT,
+    consap TEXT,
+    conshouse TEXT,
+    finint TEXT,
+    endepend TEXT,
+    PRIMARY KEY (id, year),
+    FOREIGN KEY (id) REFERENCES countries(id)
 );
 
 -- Set ownership of the tables to the postgres user
-ALTER TABLE public.company_dim OWNER to postgres;
-ALTER TABLE public.skills_dim OWNER to postgres;
-ALTER TABLE public.job_postings_fact OWNER to postgres;
-ALTER TABLE public.skills_job_dim OWNER to postgres;
+ALTER TABLE public.countries OWNER to postgres;
+ALTER TABLE public.ecology OWNER to postgres;
+ALTER TABLE public.electricity OWNER to postgres;
+ALTER TABLE public.energy OWNER to postgres;
 
 -- Create indexes on foreign key columns for better performance
-CREATE INDEX idx_company_id ON public.job_postings_fact (company_id);
-CREATE INDEX idx_skill_id ON public.skills_job_dim (skill_id);
-CREATE INDEX idx_job_id ON public.skills_job_dim (job_id);
+CREATE INDEX IF NOT EXISTS idx_country_id_ecology ON public.ecology (id);
+CREATE INDEX IF NOT EXISTS idx_country_id_electricity ON public.electricity (id);
+CREATE INDEX IF NOT EXISTS idx_country_id_energy ON public.energy (id);
+
