@@ -19,36 +19,70 @@ The project includes four main tables, each described in a separate description 
 I've decided to create id - abbreviated country index related to country name. Then i put it in all 4 tables. 
 
 <b><h2>Common Fields</h2></b>
+<p>
+    <b>id:</b> Appears in all datasets and uniquely identifies each country.
+</p>
+<p>
+    <b>year:</b> Appears in all datasets and can be used to align data temporally.
+</p>
 
-<b>id: Appears in all datasets and uniquely identifies each country.</b>
+<b><h2>Suggested Foreign Key Relationships</h2></b>
 
-<b>year: Appears in all datasets and can be used to align data temporally.</b>
+<b>Energy Dataset:</b>
+<p>
+    <b>id</b> and <b>year</b> (foreign keys) reference <b>id</b> and <b>year</b> in the <b>Countries Dataset</b>
+</p>
 
-<b>Suggested Foreign Key Relationships</b>
+<b>Electricity Dataset:</b>
+<p>
+    <b>id</b> and <b>year</b> (foreign keys) reference <b>id</b> and <b>year</b> in the <b>Countries Dataset</b>
+</p>
 
-<b>Energy Dataset</b>:
+<b>Ecology Dataset:</b>
+<p>
+    <b>id</b> and <b>year</b> (foreign keys) reference <b>id</b> and <b>year</b> in the <b>Countries Dataset</b>
+</p>
 
-id (foreign key) references id in the Countries Dataset
-year can be used to join with the year in the Countries Dataset
+<b><h2>Collision and Errors</h2></b>
+<p>
+    After rearranging my data with Pandas in Python to make all floats use a period (.) instead of a comma (,), I faced new collisions:
+</p>
+<ul>
+    <li>Query with errors. Please, check the error below. Double key value violates the uniqueness limitation of "countries_pkey".</li>
+    <li>Query with errors. Please, check the error below. Inserting or modifying on the "ecology" table violates the foreign key "ecology_id_fkey".</li>
+    <li>Query with errors. Please, check the error below. Inserting or modifying on the table "electricity" violates the foreign key "electricity_id_fkey".</li>
+    <li>Query with errors. Please, check the error below. Double key value violates the uniqueness limitation of "energy_pkey".</li>
+</ul>
+<p>
+    Choosing only <b>id</b> as a primary key and foreign key for the other three tables was wrong.
+</p>
 
-<b>Electricity Dataset</b>:
+<b><h2>Corrected Version</h2></b>
+<p>
+    To resolve the issues, the following changes were made:
+</p>
+<ul>
+    <li>Added a composite primary key consisting of <b>id</b> and <b>year</b> for each table.</li>
+    <li>Ensured that the <b>id</b> and <b>year</b> combination is unique across all datasets.</li>
+    <li>Updated foreign key relationships to reference both <b>id</b> and <b>year</b> in the <b>Countries Dataset</b>.</li>
+</ul>
 
-id (foreign key) references id in the Countries Dataset
-year can be used to join with the year in the Countries Dataset
+<b><h2>Suggested Foreign Key Relationships (Corrected)</h2></b>
 
-<b>Ecology Dataset</b>:
+<b>Energy Dataset:</b>
+<p>
+    <b>id</b> and <b>year</b> (foreign keys) reference <b>id</b> and <b>year</b> in the <b>Countries Dataset</b>
+</p>
 
-id (foreign key) references id in the Countries Dataset
-year can be used to join with the year in the Countries Dataset
+<b>Electricity Dataset:</b>
+<p>
+    <b>id</b> and <b>year</b> (foreign keys) reference <b>id</b> and <b>year</b> in the <b>Countries Dataset</b>
+</p>
 
-Collision and works on errors 
-after rearranging my data with Pandas, in Python, to make all floats *.* instead of *,* i faced a new collision: 
-Query with errors. Please, check the error below. double key value violates the uniqueness limitation of "countries_pkey" 
-Query with errors. Please, check the error below. Inserting or modifying on the "ecology" table violates the foreign key "ecology_id_fkey"
-Query with errors. Please, check the error below. Inserting or modifying on the table "electricity" violates the foreign key "electricity_id_fkey" 
-Query with errors. Please, check the error below. double key value violates the uniqueness limitation of "energy_pkey"
-
-Choosing only id as a primary key and  foreign key for another 3 tables was wrong 
+<b>Ecology Dataset:</b>
+<p>
+    <b>id</b> and <b>year</b> (foreign keys) reference <b>id</b> and <b>year</b> in the <b>Countries Dataset</b>
+</p>
 
 
 
