@@ -1,7 +1,7 @@
 <b><h1>EU Energy Sector Performance Analysis</h1></b>
 
 <b><h2>Overview</h2></b>
-This project focuses on analyzing key performance indicators in the EU energy sector for the years 2015-2019 and 2021. The data was sourced from the dane.gov.pl website. You can access the original dataset here https://shorturl.at/mO5Oc.
+This project focuses on analyzing key performance indicators in the EU energy sector for the years 2015-2019 and 2021. The data was sourced from the dane.gov.pl website. You can access the original dataset here https://shorturl.at/mO5Oc. During this project i've used PGAdmin, VS Code(PostgreSQL) and PyCharm community version. 
 
 <b><h2>Data Preparation</h2></b>
 The original raw tables were not ready for analysis, so several preprocessing steps were undertaken:
