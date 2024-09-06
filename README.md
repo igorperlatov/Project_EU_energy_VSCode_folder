@@ -15,7 +15,31 @@ The original raw tables were not ready for analysis, so several preprocessing st
     - Columns were renamed or shortened to make the datasets easier to work with.
 
 <b><h2>Datasets</h2></b>
-The project includes four main tables, each described in a separate description file. These tables are <b>Countries</b>, <b>Ecology</b>, <b>Electricity</b>, and <b>Energy</b>. These tables are now ready for analysis in various contexts.
+The project includes four main tables, each described in a separate description file. These tables are <b>Countries</b>, <b>Ecology</b>, <b>Electricity</b>, and <b>Energy</b>. These tables are now ready for analysis in various contexts. 
+I've decided to create id - abbreviated country index related to country name. Then i put it in all 4 tables. 
+
+<b><h2>Common Fields</h2></b>
+
+<b>id: Appears in all datasets and uniquely identifies each country.</b>
+
+<b>year: Appears in all datasets and can be used to align data temporally.</b>
+
+<b>Suggested Foreign Key Relationships</b>
+
+<b>Energy Dataset</b>:
+
+id (foreign key) references id in the Countries Dataset
+year can be used to join with the year in the Countries Dataset
+
+<b>Electricity Dataset</b>:
+
+id (foreign key) references id in the Countries Dataset
+year can be used to join with the year in the Countries Dataset
+
+<b>Ecology Dataset</b>:
+
+id (foreign key) references id in the Countries Dataset
+year can be used to join with the year in the Countries Dataset
 
 <b><h2>Next Steps</h2></b>
 1. Define Analysis Goals:
