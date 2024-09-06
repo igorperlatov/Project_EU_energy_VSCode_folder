@@ -1,0 +1,13 @@
+import pandas as pd
+
+# Load the CSV file
+df = pd.read_csv('D:\\IPER\\Direction\\strategy\\studying\\DATA\\Project_EU_energy_GitHub_folder\\data design table\\energy.csv', delimiter=';')
+
+# Replace commas with periods in the specified columns
+df['consap'] = df['consap'].str.replace(',', '.').astype(float)
+df['conshouse'] = df['conshouse'].str.replace(',', '.').astype(float)
+df['finint'] = df['finint'].str.replace(',', '.').astype(float)
+df['endepend'] = df['endepend'].str.replace(',', '.').astype(float)
+
+# Save the cleaned data back to a CSV file
+df.to_csv('D:\\IPER\\Direction\\strategy\\studying\\DATA\\Project_EU_energy_GitHub_folder\\data design table\\energy_cleaned.csv', index=False)

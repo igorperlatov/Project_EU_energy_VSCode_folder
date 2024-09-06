@@ -14,54 +14,15 @@ NOTE: If you are having issues with permissions. And you get error:
 5. Paste the following into `PSQL Tool`, (with the CORRECT file path)
 */
 
-copy public.company_dim FROM 'D:\IPER\Direction\strategy\studying\DATA\Luke_barousse\csv_files\company_dim.csv' WITH (FORMAT csv, HEADER true, DELIMITER ',', ENCODING 'UTF8');
+-- Copy data into the countries table
+COPY countries FROM 'D:\IPER\Direction\strategy\studying\DATA\Project_EU_energy_GitHub_folder\data design table\countries.csv' WITH (FORMAT csv, HEADER true, DELIMITER ',', ENCODING 'UTF8');
 
-copy job_postings_fact FROM 'D:\IPER\Direction\strategy\studying\DATA\Luke_barousse\csv_files\job_postings_fact.csv' WITH (FORMAT csv, HEADER true, DELIMITER ',', ENCODING 'UTF8');
+-- Copy data into the ecology table
+COPY ecology FROM 'D:\IPER\Direction\strategy\studying\DATA\Project_EU_energy_GitHub_folder\data design table\ecology.csv' WITH (FORMAT csv, HEADER true, DELIMITER ',', ENCODING 'UTF8');
 
-copy public.skills_dim FROM 'D:\IPER\Direction\strategy\studying\DATA\Luke_barousse\csv_files\skills_dim.csv' WITH (FORMAT csv, HEADER true, DELIMITER ',', ENCODING 'UTF8');
+-- Copy data into the electricity table
+COPY electricity FROM 'D:\IPER\Direction\strategy\studying\DATA\Project_EU_energy_GitHub_folder\data design table\electricity.csv' WITH (FORMAT csv, HEADER true, DELIMITER ',', ENCODING 'UTF8');
 
-copy skills_job_dim FROM 'D:\IPER\Direction\strategy\studying\DATA\Luke_barousse\csv_files\skills_job_dim.csv' WITH (FORMAT csv, HEADER true, DELIMITER ',', ENCODING 'UTF8');
+-- Copy data into the energy table
+COPY energy FROM 'D:\IPER\Direction\strategy\studying\DATA\Project_EU_energy_GitHub_folder\data design table\energy.csv' WITH (FORMAT CSV, HEADER, NULL 'NULL');
 
-
-
--- NOTE: This has been updated from the video to fix issues with encoding
-
-COPY tempo1(company_id,name,link,link_google,thumbnail)
-FROM 'D:\IPER\Direction\strategy\studying\DATA\Luke_barousse\csv_files\company_dim.csv'
-WITH (FORMAT csv, HEADER true, DELIMITER ',', ENCODING 'UTF8'); 
-
-
-COPY tempo1(company_id, name, link, link_google, thumbnail)
-FROM 'D:\IPER\Direction\strategy\studying\DATA\Luke_barousse\csv_files\company_dim.csv'
-WITH (FORMAT csv, HEADER true, DELIMITER ',', ENCODING 'UTF8');
-
-
-COPY skills_dim
-FROM 'D:\IPER\Direction\strategy\studying\DATA\Luke_barousse\csv_files\skills_dim.csv'
-WITH (FORMAT csv, HEADER true, DELIMITER ',', ENCODING 'UTF8');
-
-COPY job_postings_fact
-FROM 'D:\IPER\Direction\strategy\studying\DATA\Luke_barousse\csv_files\job_posting_fact.csv'
-WITH (FORMAT csv, HEADER true, DELIMITER ',', ENCODING 'UTF8');
-
-COPY skills_job_dim
-FROM 'D:\IPER\Direction\strategy\studying\DATA\Luke_barousse\csv_files\skills_job_dim.csv'
-WITH (FORMAT csv, HEADER true, DELIMITER ',', ENCODING 'UTF8');
-
-
-SELECT company_id, COUNT(*)
-FROM tempo1
-GROUP BY company_id
-HAVING COUNT(*) > 1;
-
-
--- Tworzenie tymczasowej tabeli z unikalnymi rekordami
-CREATE TABLE tempo1_temp AS
-SELECT DISTINCT *
-FROM tempo1;
-
--- Usunięcie oryginalnej tabeli
-DROP TABLE tempo1;
-
--- Przemianowanie tymczasowej tabeli na oryginalną nazwę
-ALTER TABLE tempo1_temp RENAME TO tempo1;
