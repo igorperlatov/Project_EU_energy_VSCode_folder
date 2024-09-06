@@ -41,6 +41,17 @@ year can be used to join with the year in the Countries Dataset
 id (foreign key) references id in the Countries Dataset
 year can be used to join with the year in the Countries Dataset
 
+Collision and works on errors 
+after rearranging my data with Pandas, in Python, to make all floats *.* instead of *,* i faced a new collision: 
+Query with errors. Please, check the error below. double key value violates the uniqueness limitation of "countries_pkey" 
+Query with errors. Please, check the error below. Inserting or modifying on the "ecology" table violates the foreign key "ecology_id_fkey"
+Query with errors. Please, check the error below. Inserting or modifying on the table "electricity" violates the foreign key "electricity_id_fkey" 
+Query with errors. Please, check the error below. double key value violates the uniqueness limitation of "energy_pkey"
+
+Choosing only id as a primary key and  foreign key for another 3 tables was wrong 
+
+
+
 <b><h2>Next Steps</h2></b>
 1. Define Analysis Goals:
     - Determine the specific outputs and insights we want to derive from the data.
