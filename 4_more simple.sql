@@ -34,7 +34,7 @@ GROUP BY
 ORDER BY 
     electricity.year;
 
-Year with Maximum GDP and Corresponding Population
+-- Year with Maximum GDP and Corresponding Population
 
 
 SELECT 
