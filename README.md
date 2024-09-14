@@ -26,6 +26,20 @@ I've decided to create id - abbreviated country index related to country name. T
     <b>year:</b> Appears in all datasets and can be used to align data temporally.
 </p>
 
+<b><h2>Collision and Errors</h2></b>
+<p>
+    After rearranging my data with Pandas in Python to make all floats use a period (.) instead of a comma (,), I faced new collisions:
+</p>
+<ul>
+    <li>Query with errors. Please, check the error below. Double key value violates the uniqueness limitation of "countries_pkey".</li>
+    <li>Query with errors. Please, check the error below. Inserting or modifying on the "ecology" table violates the foreign key "ecology_id_fkey".</li>
+    <li>Query with errors. Please, check the error below. Inserting or modifying on the table "electricity" violates the foreign key "electricity_id_fkey".</li>
+    <li>Query with errors. Please, check the error below. Double key value violates the uniqueness limitation of "energy_pkey".</li>
+</ul>
+<p>
+    Choosing only <b>id</b> as a primary key and foreign key for the other three tables was wrong.
+</p>
+
 <b><h2>Corrected Version</h2></b>
 <p>
     To resolve the issues, the following changes were made:
@@ -81,26 +95,6 @@ I've decided to create id - abbreviated country index related to country name. T
     <li><b>Primary Key:</b> (id, year)</li>
     <li><b>Foreign Key:</b> (id, year) references (id, year) in "countries"</li>
 </ul>
-
-<b><h2>Collision and Errors</h2></b>
-<p>
-    After rearranging my data with Pandas in Python to make all floats use a period (.) instead of a comma (,), I faced new collisions:
-</p>
-<ul>
-    <li>Query with errors. Please, check the error below. Double key value violates the uniqueness limitation of "countries_pkey".</li>
-    <li>Query with errors. Please, check the error below. Inserting or modifying on the "ecology" table violates the foreign key "ecology_id_fkey".</li>
-    <li>Query with errors. Please, check the error below. Inserting or modifying on the table "electricity" violates the foreign key "electricity_id_fkey".</li>
-    <li>Query with errors. Please, check the error below. Double key value violates the uniqueness limitation of "energy_pkey".</li>
-</ul>
-<p>
-    Choosing only <b>id</b> as a primary key and foreign key for the other three tables was wrong.
-</p>
-
-
-
-
-
-
 
 <b><h2>PROCESS</h2></b>
 <p>
