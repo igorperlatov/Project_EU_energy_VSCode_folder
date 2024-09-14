@@ -86,14 +86,4 @@ I've decided to create id - abbreviated country index related to country name. T
 
 
 
-<b><h2>Next Steps</h2></b>
-1. Define Analysis Goals:
-    - Determine the specific outputs and insights we want to derive from the data.
-2. Perform Analysis:
-    - Use the prepared datasets to conduct the analysis and generate the desired outputs.
 
-<b><h2>Getting Started</h2></b>
-To start working with the data, follow these steps:
-1. Download the CSV files from the repository.
-2. Refer to the description file for details on each table.
-3. Use your preferred data analysis tools to explore and analyze the data.
