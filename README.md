@@ -84,6 +84,16 @@ I've decided to create id - abbreviated country index related to country name. T
     <b>id</b> and <b>year</b> (foreign keys) reference <b>id</b> and <b>year</b> in the <b>Countries Dataset</b>
 </p>
 
+<b><h2>PROCESS</h2></b>
+<p>
+    1. We created tables in PostgreSQL using VSCode and downloaded data there.
+</p>
+<p>
+    2. Created 6 simple queries and 6 complex queries. After reviewing the output, I found a few of them faulty.
+</p>
+<p>
+    3. Created a diagram of our dataset using Lucidchart.
+</p>
 
 
 
