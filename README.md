@@ -26,7 +26,17 @@ I've decided to create id - abbreviated country index related to country name. T
     <b>year:</b> Appears in all datasets and can be used to align data temporally.
 </p>
 
-<b><h2>Suggested Foreign Key Relationships</h2></b>
+<b><h2>Corrected Version</h2></b>
+<p>
+    To resolve the issues, the following changes were made:
+</p>
+<ul>
+    <li>Added a composite primary key consisting of <b>id</b> and <b>year</b> for each table.</li>
+    <li>Ensured that the <b>id</b> and <b>year</b> combination is unique across all datasets.</li>
+    <li>Updated foreign key relationships to reference both <b>id</b> and <b>year</b> in the <b>Countries Dataset</b>.</li>
+</ul>
+
+<h2><b>Suggested Foreign Key Relationships (Corrected)</b></h2>
 
 <b>Energy Dataset:</b>
 <p>
@@ -42,6 +52,35 @@ I've decided to create id - abbreviated country index related to country name. T
 <p>
     <b>id</b> and <b>year</b> (foreign keys) reference <b>id</b> and <b>year</b> in the <b>Countries Dataset</b>
 </p>
+
+<h2><b>Detailed Foreign Key Relationships</b></h2>
+
+<b>Countries Table:</b>
+<ul>
+    <li><b>Attributes:</b> id, country, year, surface, population, GDP</li>
+    <li><b>Primary Key:</b> (id, year)</li>
+</ul>
+
+<b>Energy Table:</b>
+<ul>
+    <li><b>Attributes:</b> id, year, enprim, endom, enint, import, fincons, consap, conshouse, finint, endepend</li>
+    <li><b>Primary Key:</b> (id, year)</li>
+    <li><b>Foreign Key:</b> (id, year) references (id, year) in "countries"</li>
+</ul>
+
+<b>Electricity Table:</b>
+<ul>
+    <li><b>Attributes:</b> id, year, elprod, elres, eldom, elfin, resel, gdpint, elconhouse, eldepend</li>
+    <li><b>Primary Key:</b> (id, year)</li>
+    <li><b>Foreign Key:</b> (id, year) references (id, year) in "countries"</li>
+</ul>
+
+<b>Ecology Table:</b>
+<ul>
+    <li><b>Attributes:</b> id, year, reshare, resind, restemp, restrans, greenhouse, emission, emisprod, emiscap</li>
+    <li><b>Primary Key:</b> (id, year)</li>
+    <li><b>Foreign Key:</b> (id, year) references (id, year) in "countries"</li>
+</ul>
 
 <b><h2>Collision and Errors</h2></b>
 <p>
@@ -57,32 +96,11 @@ I've decided to create id - abbreviated country index related to country name. T
     Choosing only <b>id</b> as a primary key and foreign key for the other three tables was wrong.
 </p>
 
-<b><h2>Corrected Version</h2></b>
-<p>
-    To resolve the issues, the following changes were made:
-</p>
-<ul>
-    <li>Added a composite primary key consisting of <b>id</b> and <b>year</b> for each table.</li>
-    <li>Ensured that the <b>id</b> and <b>year</b> combination is unique across all datasets.</li>
-    <li>Updated foreign key relationships to reference both <b>id</b> and <b>year</b> in the <b>Countries Dataset</b>.</li>
-</ul>
 
-<b><h2>Suggested Foreign Key Relationships (Corrected)</h2></b>
 
-<b>Energy Dataset:</b>
-<p>
-    <b>id</b> and <b>year</b> (foreign keys) reference <b>id</b> and <b>year</b> in the <b>Countries Dataset</b>
-</p>
 
-<b>Electricity Dataset:</b>
-<p>
-    <b>id</b> and <b>year</b> (foreign keys) reference <b>id</b> and <b>year</b> in the <b>Countries Dataset</b>
-</p>
 
-<b>Ecology Dataset:</b>
-<p>
-    <b>id</b> and <b>year</b> (foreign keys) reference <b>id</b> and <b>year</b> in the <b>Countries Dataset</b>
-</p>
+
 
 <b><h2>PROCESS</h2></b>
 <p>
