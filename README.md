@@ -106,6 +106,11 @@ I've decided to create id - abbreviated country index related to country name. T
 <p>
     3. Created a diagram of our dataset using Lucidchart.
 </p>
-
+<p>
+    4. In the process of analyzing simple queries, <b>s1</b> and <b>s2</b> show us that import reduces as well as final consumption was reduced. This could be explained as a cause of the huge stop in the economy because of COVID.
+</p>
+<p>
+    5.<b>s3</b> shows us that 2021 was slightly more than 2019 in the context of household electricity consumption, but these two years are at the bottom among everything.
+</p>
 
 
