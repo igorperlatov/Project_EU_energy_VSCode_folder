@@ -107,7 +107,7 @@ I've decided to create id - abbreviated country index related to country name. T
     1. We created tables in PostgreSQL using VSCode and downloaded data there.
 </p>
 <p>
-    2. Created 6 simple queries and 6 complex queries. After reviewing the output, I found a few of them faulty.
+    2. Created 6 simple queries and 6 complex queries. s1-s6 and c1-c6 respectfully. After reviewing the output, I found a few of them faulty.
 </p>
 <p>
     3. Created a diagram of our dataset using Lucidchart.
