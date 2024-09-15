@@ -26,23 +26,6 @@ I've decided to create id - abbreviated country index related to country name. T
     <b>year:</b> Appears in all datasets and can be used to align data temporally.
 </p>
 
-<b><h2>Suggested Foreign Key Relationships</h2></b>
-
-<b>Energy Dataset:</b>
-<p>
-    <b>id</b> and <b>year</b> (foreign keys) reference <b>id</b> and <b>year</b> in the <b>Countries Dataset</b>
-</p>
-
-<b>Electricity Dataset:</b>
-<p>
-    <b>id</b> and <b>year</b> (foreign keys) reference <b>id</b> and <b>year</b> in the <b>Countries Dataset</b>
-</p>
-
-<b>Ecology Dataset:</b>
-<p>
-    <b>id</b> and <b>year</b> (foreign keys) reference <b>id</b> and <b>year</b> in the <b>Countries Dataset</b>
-</p>
-
 <b><h2>Collision and Errors</h2></b>
 <p>
     After rearranging my data with Pandas in Python to make all floats use a period (.) instead of a comma (,), I faced new collisions:
@@ -67,7 +50,7 @@ I've decided to create id - abbreviated country index related to country name. T
     <li>Updated foreign key relationships to reference both <b>id</b> and <b>year</b> in the <b>Countries Dataset</b>.</li>
 </ul>
 
-<b><h2>Suggested Foreign Key Relationships (Corrected)</h2></b>
+<h2><b>Suggested Foreign Key Relationships (Corrected)</b></h2>
 
 <b>Energy Dataset:</b>
 <p>
@@ -84,16 +67,50 @@ I've decided to create id - abbreviated country index related to country name. T
     <b>id</b> and <b>year</b> (foreign keys) reference <b>id</b> and <b>year</b> in the <b>Countries Dataset</b>
 </p>
 
+<h2><b>Detailed Foreign Key Relationships</b></h2>
+
+<b>Countries Table:</b>
+<ul>
+    <li><b>Attributes:</b> id, country, year, surface, population, GDP</li>
+    <li><b>Primary Key:</b> (id, year)</li>
+</ul>
+
+<b>Energy Table:</b>
+<ul>
+    <li><b>Attributes:</b> id, year, enprim, endom, enint, import, fincons, consap, conshouse, finint, endepend</li>
+    <li><b>Primary Key:</b> (id, year)</li>
+    <li><b>Foreign Key:</b> (id, year) references (id, year) in "countries"</li>
+</ul>
+
+<b>Electricity Table:</b>
+<ul>
+    <li><b>Attributes:</b> id, year, elprod, elres, eldom, elfin, resel, gdpint, elconhouse, eldepend</li>
+    <li><b>Primary Key:</b> (id, year)</li>
+    <li><b>Foreign Key:</b> (id, year) references (id, year) in "countries"</li>
+</ul>
+
+<b>Ecology Table:</b>
+<ul>
+    <li><b>Attributes:</b> id, year, reshare, resind, restemp, restrans, greenhouse, emission, emisprod, emiscap</li>
+    <li><b>Primary Key:</b> (id, year)</li>
+    <li><b>Foreign Key:</b> (id, year) references (id, year) in "countries"</li>
+</ul>
+
+<b><h2>PROCESS</h2></b>
+<p>
+    1. We created tables in PostgreSQL using VSCode and downloaded data there.
+</p>
+<p>
+    2. Created 6 simple queries and 6 complex queries. s1-s6 and c1-c6 respectfully. After reviewing the output, I found a few of them faulty.
+</p>
+<p>
+    3. Created a diagram of our dataset using Lucidchart.
+</p>
+<p>
+    4. In the process of analyzing simple queries, <b>s1</b> and <b>s2</b> show us that import reduces as well as final consumption was reduced. This could be explained as a cause of the huge stop in the economy because of COVID.
+</p>
+<p>
+    5.<b>s3</b> shows us that 2021 was slightly more than 2019 in the context of household electricity consumption, but these two years are at the bottom among everything.
+</p>
 
 
-<b><h2>Next Steps</h2></b>
-1. Define Analysis Goals:
-    - Determine the specific outputs and insights we want to derive from the data.
-2. Perform Analysis:
-    - Use the prepared datasets to conduct the analysis and generate the desired outputs.
-
-<b><h2>Getting Started</h2></b>
-To start working with the data, follow these steps:
-1. Download the CSV files from the repository.
-2. Refer to the description file for details on each table.
-3. Use your preferred data analysis tools to explore and analyze the data.

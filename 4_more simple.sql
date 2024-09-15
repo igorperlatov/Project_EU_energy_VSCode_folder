@@ -32,6 +32,25 @@ FROM
 GROUP BY 
     year
 ORDER BY 
+    electricity.year;
+
+-- Year with Maximum GDP and Corresponding Population
+
+
+SELECT 
+    c1.year,
+    c1.GDP,
+    c1.population
+FROM 
+    countries c1
+JOIN 
+    (SELECT MAX(GDP) AS max_GDP FROM countries) c2
+ON 
+    c1.GDP = c2.max_GDP
+ORDER BY 
+    c1.year;
+
+-- Total Renewable Energy Share by Year
     avg_electricity_consumption_households DESC;
 
 
@@ -44,4 +63,28 @@ FROM
 GROUP BY 
     ecology.year
 ORDER BY 
+    ecology.year;
+
+-- Year with Maximum Electricity Production and Corresponding GDP
+
+SELECT 
+    e.year,
+    e.total_electricity_production,
+    c.GDP
+FROM 
+    (SELECT 
+        year, 
+        SUM(elprod) AS total_electricity_production 
+     FROM 
+        electricity 
+     GROUP BY 
+        year 
+     ORDER BY 
+        total_electricity_production DESC 
+     LIMIT 1) e
+JOIN 
+    countries c
+ON 
+    e.year = c.year;
+
     average_renewable_energy_share DESC;
