@@ -110,7 +110,18 @@ I've decided to create id - abbreviated country index related to country name. T
     4. In the process of analyzing simple queries, <b>s1</b> and <b>s2</b> show us that import reduces as well as final consumption was reduced. This could be explained as a cause of the huge stop in the economy because of COVID.
 </p>
 <p>
-    5.<b>s3</b> shows us that 2021 was slightly more than 2019 in the context of household electricity consumption, but these two years are at the bottom among everything.
+    5. <b>s3</b> shows us that 2021 was slightly more than 2019 in the context of household electricity consumption, but these two years are at the bottom among everything.
 </p>
-
+<p>
+    6. During figuring out an output in <b>s4</b>, the reshare values were incorrect. That investigation directed me to the fact that some data about green energy for 2019 are unavailable, so I was forced to rearrange the whole dataset from scratch, get raw data, transform it, separate one table into four, fix CSV in Pandas, etc.
+</p>
+<p>
+    7. Also, I decided to delete rows with EU overall statistics for each year, because they double some of the yearly calculations.
+</p>
+<p>
+    8. Query <b>c1</b> shows us that the share of RES is growing up to 24% in the year 2021.
+</p>
+<p>
+    9. Also, <b>c6</b> shows that Germany holds their leader position over the years.
+</p>
 
