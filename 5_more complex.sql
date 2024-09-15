@@ -1,53 +1,49 @@
--- Average Renewable Energy Share and Greenhouse Gas Emissions by Year with Total Energy Consumption
+-- c1.Average Renewable Energy Share and Greenhouse Gas Emissions by Year with Total Energy Consumption
 
 SELECT 
     ecology.year,
-    AVG(CAST(ecology.reshare AS FLOAT)) AS avg_renewable_energy_share,
-    AVG(CAST(ecology.greenhouse AS FLOAT)) AS avg_greenhouse_gas_emissions,
+    ROUND (AVG(CAST(ecology.reshare AS numeric)), 2) AS avg_renewable_energy_share,
+    ROUND (AVG(CAST(ecology.greenhouse AS numeric)), 2) AS avg_greenhouse_gas_emissions,
     (SELECT SUM(energy.enprim) FROM energy WHERE energy.year = ecology.year) AS total_energy_consumption
 FROM 
     ecology
 GROUP BY 
     ecology.year
 ORDER BY 
-    ecology.year;
+    avg_renewable_energy_share DESC;
 
-
-
-
--- Year with Maximum Greenhouse Gas Emissions and Corresponding Energy Dependency
+-- c2.Year with Maximum Greenhouse Gas Emissions and Corresponding Energy Dependency
 
 SELECT 
     ecology.year,
-    ecology.greenhouse,
-    (SELECT MAX(energy.endepend) FROM energy WHERE energy.year = ecology.year) AS energy_dependency
+    MAX(ecology.greenhouse),
+    (SELECT ROUND (AVG(energy.endepend), 2) FROM energy WHERE energy.year = ecology.year) AS energy_dependency
 FROM 
     ecology
 WHERE 
-    CAST(ecology.greenhouse AS FLOAT) = (
-        SELECT MAX(CAST(greenhouse AS FLOAT)) 
+    CAST(ecology.greenhouse AS numeric) = (
+        SELECT MAX(CAST(greenhouse AS numeric)) 
         FROM ecology
     )
+    GROUP BY ecology.year
 ORDER BY 
-    ecology.year;
+    MAX(ecology.greenhouse);
 
-
-
--- Total Electricity Production by Year with Average GDP and Population
+-- c3.Total Electricity Production by Year with Average GDP and Population
 
 SELECT 
     electricity.year,
     SUM(electricity.elprod) AS total_electricity_production,
-    (SELECT AVG(countries.GDP) FROM countries WHERE countries.year = electricity.year) AS avg_GDP,
-    (SELECT AVG(countries.population) FROM countries WHERE countries.year = electricity.year) AS avg_population
+    (SELECT ROUND (AVG(countries.GDP), 2) FROM countries WHERE countries.year = electricity.year) AS avg_GDP,
+    (SELECT ROUND (AVG(countries.population), 2) FROM countries WHERE countries.year = electricity.year) AS avg_population
 FROM 
     electricity
 GROUP BY 
     electricity.year
 ORDER BY 
-    electricity.year;
+    avg_GDP DESC;
 
--- Year with Maximum Population and Corresponding Electricity Production
+-- c4.Year with Maximum Population and Corresponding Electricity Production
 
 SELECT 
     countries.year,
@@ -63,25 +59,58 @@ WHERE
 ORDER BY 
     countries.year;
 
--- Cumulative Sum of Energy Consumption by Year
+-- c5.Cumulative Sum of Energy Consumption by Year
 
 SELECT 
-    energy.year,
-    energy.enprim,
-    SUM(energy.enprim) OVER (ORDER BY energy.year) AS cumulative_energy_consumption
+    year,
+    SUM(enprim) AS yearly_energy_consumption,
+    SUM(SUM(enprim)) OVER (ORDER BY year) AS cumulative_energy_consumption
 FROM 
     energy
+GROUP BY 
+    year
 ORDER BY 
-    energy.year;
+    cumulative_energy_consumption DESC;
 
+-- c6.Selecting country with maximal GDP and population for each year 
 
--- Rank of Years by Greenhouse Gas Emissions
-
+WITH MaxGDP AS (
+    SELECT 
+        year,
+        MAX(GDP) AS max_GDP
+    FROM 
+        countries
+    WHERE 
+        id NOT LIKE 'UE%'
+    GROUP BY 
+        year
+),
+MaxPopulation AS (
+    SELECT 
+        year,
+        MAX(population) AS max_population
+    FROM 
+        countries
+    WHERE 
+        id NOT LIKE 'UE%'
+    GROUP BY 
+        year
+)
 SELECT 
-    ecology.year,
-    ecology.greenhouse,
-    RANK() OVER (ORDER BY CAST(ecology.greenhouse AS FLOAT) DESC) AS rank_by_emissions
+    mg.year,
+    c1.id AS country_with_max_GDP,
+    mg.max_GDP,
+    c2.id AS country_with_max_population,
+    mp.max_population
 FROM 
-    ecology
+    MaxGDP mg
+JOIN 
+    countries c1 ON mg.year = c1.year AND mg.max_GDP = c1.GDP
+JOIN 
+    MaxPopulation mp ON mg.year = mp.year
+JOIN 
+    countries c2 ON mp.year = c2.year AND mp.max_population = c2.population
+WHERE 
+    c1.id NOT LIKE 'UE%' AND c2.id NOT LIKE 'UE%'
 ORDER BY 
-    ecology.year;
+    mg.year;

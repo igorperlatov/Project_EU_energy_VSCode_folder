@@ -11,8 +11,8 @@ CREATE TABLE countries (
 
 -- Create the ecology table with foreign key references to the countries table
 CREATE TABLE ecology (
-    id VARCHAR(255) NOT NULL,
-    year BIGINT NOT NULL,
+    id VARCHAR(255),
+    year BIGINT,
     reshare FLOAT,
     resind FLOAT,
     restemp FLOAT,
@@ -45,15 +45,21 @@ CREATE TABLE electricity (
 CREATE TABLE energy (
     id VARCHAR(255) NOT NULL,
     year BIGINT NOT NULL,
-    enprim BIGINT,
-    endom BIGINT,
-    enint FLOAT,
-    import BIGINT,
-    fincons BIGINT,
-    consap FLOAT,
-    conshouse FLOAT,
-    finint FLOAT,
-    endepend FLOAT,
+    enprim numeric,
+    endom numeric,
+    enint numeric,
+    import numeric,
+    fincons numeric,
+    consap numeric,
+    conshouse numeric,
+    finint numeric,
+    endepend numeric,
     PRIMARY KEY (id, year),
     FOREIGN KEY (id, year) REFERENCES countries(id, year)
 );
+
+
+drop table energy;
+drop table ecology;
+drop table electricity;
+drop table countries; 
