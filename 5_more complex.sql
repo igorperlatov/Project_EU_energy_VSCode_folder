@@ -1,3 +1,4 @@
+
 -- c1.Average Renewable Energy Share and Greenhouse Gas Emissions by Year with Total Energy Consumption
 
 SELECT 
